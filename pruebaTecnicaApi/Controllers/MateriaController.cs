@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NEGOCIO.Interfaces;
 
@@ -19,6 +20,7 @@ namespace pruebaTecnicaApi.Controllers
             var response = await _materiaService.ObtenerMaterias();
             return Ok(response);
         }
+
         [HttpGet("ObtenerDetalleMaterias/{id}")]
         public async Task<IActionResult> ObtenerDetalleMaterias(int id)
         {

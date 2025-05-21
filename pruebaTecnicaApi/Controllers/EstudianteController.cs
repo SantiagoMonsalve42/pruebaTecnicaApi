@@ -1,10 +1,12 @@
 ﻿using DATA.ModelData;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NEGOCIO.Implementations;
 using NEGOCIO.Interfaces;
 
 namespace pruebaTecnicaApi.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class EstudianteController: BaseController

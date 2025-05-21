@@ -1,6 +1,7 @@
 ﻿using COMMON.Utilities;
 using Microsoft.AspNetCore.Diagnostics;
 using pruebaTecnicaApi.Config;
+using pruebaTecnicaApi.Middleware;
 
 namespace pruebaTecnicaApi
 {
@@ -43,6 +44,7 @@ namespace pruebaTecnicaApi
             app.UseRouting();
             app.UseCors(_MyCors);
             app.UseAuthorization();
+            app.UseMiddleware<BasicAuthMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

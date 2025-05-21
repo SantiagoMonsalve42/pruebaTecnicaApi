@@ -1,4 +1,5 @@
 ﻿using DTO.Transport.Request;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NEGOCIO.Interfaces;
@@ -15,6 +16,7 @@ namespace pruebaTecnicaApi.Controllers
             _sesionService = sesionService;
         }
         [HttpPost("Login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             var response = await _sesionService.Login(request.Username, request.Password);
@@ -25,6 +27,7 @@ namespace pruebaTecnicaApi.Controllers
             return BadRequest(response);
         }
         [HttpPost("Registro")]
+        [AllowAnonymous]
         public async Task<IActionResult> Registro([FromBody] CrearEstudiante request)
         {
             var response = await _sesionService.Registro(request);
