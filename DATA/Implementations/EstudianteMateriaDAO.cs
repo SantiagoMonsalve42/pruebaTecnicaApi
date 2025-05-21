@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DATA.Implementations
 {
-    public class EstudianteMateriaDAO : IEstudianteMateriaServiceDAO
+    public class EstudianteMateriaServiceDAO : IEstudianteMateriaServiceDAO
     {
         private readonly IRepository<EstudianteMateria> _repository;
 
-        public EstudianteMateriaDAO(IRepository<EstudianteMateria> repository)
+        public EstudianteMateriaServiceDAO(IRepository<EstudianteMateria> repository)
         {
             _repository = repository;
         }
@@ -36,9 +36,9 @@ namespace DATA.Implementations
         {
             return await _repository.AsQueryable().ToListAsync();
         }
-        public async Task<EstudianteMateria?> GetByIdAsync(int id)
+        public async Task<List<EstudianteMateria?>> GetByIdAsync(int id)
         {
-            return await (from row in _repository.Entity where row.EstudianteId == id select row).FirstOrDefaultAsync();
+            return await (from row in _repository.Entity where row.EstudianteId == id select row).ToListAsync();
         }
     }
 }

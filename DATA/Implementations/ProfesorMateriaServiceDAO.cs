@@ -40,5 +40,9 @@ namespace DATA.Implementations
         {
             return await (from row in _repository.Entity where row.ProfesorId == id select row).FirstOrDefaultAsync();
         }
+        public async Task<List<ProfesorMateria>> GetByIdMateriaAsync(int id)
+        {
+            return await (from row in _repository.Entity where row.MateriaId == id select row).ToListAsync();
+        }
     }
 }

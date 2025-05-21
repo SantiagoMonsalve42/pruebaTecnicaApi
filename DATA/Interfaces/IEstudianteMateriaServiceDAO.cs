@@ -8,6 +8,6 @@ namespace DATA.Interfaces
         Task<EstudianteMateria> UpdateAsync(EstudianteMateria entity);
         Task<EstudianteMateria> DeleteAsync(EstudianteMateria entity);
         Task<IEnumerable<EstudianteMateria>> GetAllAsync();
-        Task<EstudianteMateria?> GetByIdAsync(int id);
+        Task<List<EstudianteMateria?>> GetByIdAsync(int id);
     }
 }

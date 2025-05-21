@@ -1,10 +1,10 @@
 ﻿using System.Text;
 using COMMON.Utilities;
-using DATA.Implementations;
 using DATA.Interfaces;
 using DATA.ModelData;
 using DTO.Common;
 using DTO.Transport.Request;
+using DTO.Transport.Response;
 using NEGOCIO.Interfaces;
 
 namespace NEGOCIO.Implementations
@@ -38,7 +38,12 @@ namespace NEGOCIO.Implementations
             return new HttpResponseDto
             {
                 Status = true,
-                Data = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"))
+
+                Data = new LoginResponse
+                {
+                    IdEstudiante=existe.EstudianteId,
+                    Token = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{Util.GetSHA256(password)}"))
+                }                
             };
         }
 

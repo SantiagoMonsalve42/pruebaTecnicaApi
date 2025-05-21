@@ -27,6 +27,7 @@ namespace pruebaTecnicaApi
             services.AddExceptionHandler<GlobalExceptionHandler>();
             services.SwaggerConfigurationServices();
             services.RegisterDependecyInjectionConfig(Configuration);
+
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IExceptionHandler ex)
         {
