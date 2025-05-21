@@ -2,16 +2,13 @@ using DATA.Common;
 using DATA.Interfaces;
 using DATA.ModelData;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 namespace DATA.Implementations
 {
-    public class EstudianteService : IEstudianteService
+    public class EstudianteServiceDAO : IEstudianteServiceDAO
     {
         private readonly IRepository<Estudiante> _repository;
 
-        public EstudianteService(IRepository<Estudiante> repository)
+        public EstudianteServiceDAO(IRepository<Estudiante> repository)
         {
             _repository = repository;
         }

@@ -2,7 +2,7 @@ using DATA.ModelData;
 
 namespace DATA.Interfaces
 {
-    public interface IProfesorMateriaService
+    public interface IProfesorMateriaServiceDAO
     {
         Task<ProfesorMateria> CreateAsync(ProfesorMateria entity);
         Task<ProfesorMateria> UpdateAsync(ProfesorMateria entity);

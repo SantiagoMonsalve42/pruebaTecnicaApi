@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace DATA.Interfaces
 {
-    public interface IProfesoreService
+    public interface IProfesoreServiceDAO
     {
         Task<Profesore> CreateAsync(Profesore entity);
         Task<Profesore> UpdateAsync(Profesore entity);

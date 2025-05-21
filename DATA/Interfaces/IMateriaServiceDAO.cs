@@ -2,7 +2,7 @@ using DATA.ModelData;
 
 namespace DATA.Interfaces
 {
-    public interface IMateriaService
+    public interface IMateriaServiceDAO
     {
         Task<Materia> CreateAsync(Materia entity);
         Task<Materia> UpdateAsync(Materia entity);

@@ -1,3 +1,4 @@
+
 using DATA.Common;
 using DATA.Interfaces;
 using DATA.ModelData;
@@ -7,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DATA.Implementations
 {
-    public class EstudianteMateriaService : IEstudianteMateriaService
+    public class EstudianteMateriaDAO : IEstudianteMateriaServiceDAO
     {
         private readonly IRepository<EstudianteMateria> _repository;
 
-        public EstudianteMateriaService(IRepository<EstudianteMateria> repository)
+        public EstudianteMateriaDAO(IRepository<EstudianteMateria> repository)
         {
             _repository = repository;
         }

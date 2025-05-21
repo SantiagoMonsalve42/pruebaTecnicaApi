@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DATA.Implementations
 {
-    public class ProfesorMateriaService : IProfesorMateriaService
+    public class ProfesorMateriaServiceDAO : IProfesorMateriaServiceDAO
     {
         private readonly IRepository<ProfesorMateria> _repository;
 
-        public ProfesorMateriaService(IRepository<ProfesorMateria> repository)
+        public ProfesorMateriaServiceDAO(IRepository<ProfesorMateria> repository)
         {
             _repository = repository;
         }

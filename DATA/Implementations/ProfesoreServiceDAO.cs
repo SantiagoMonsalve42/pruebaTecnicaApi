@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DATA.Implementations
 {
-    public class ProfesoreService : IProfesoreService
+    public class ProfesoreServiceDAO : IProfesoreServiceDAO
     {
         private readonly IRepository<Profesore> _repository;
 
-        public ProfesoreService(IRepository<Profesore> repository)
+        public ProfesoreServiceDAO(IRepository<Profesore> repository)
         {
             _repository = repository;
         }

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace DATA.Implementations
 {
-    public class MateriaService : IMateriaService
+    public class MateriaServiceDAO : IMateriaServiceDAO
     {
         private readonly IRepository<Materia> _repository;
 
-        public MateriaService(IRepository<Materia> repository)
+        public MateriaServiceDAO(IRepository<Materia> repository)
         {
             _repository = repository;
         }
