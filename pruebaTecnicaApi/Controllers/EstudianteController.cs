@@ -22,5 +22,11 @@ namespace pruebaTecnicaApi.Controllers
             var response = await _estudianteService.AsignarMateria(idEstudiante, idMateria);
             return Ok(response);
         }
+        [HttpPost("Detalle/{idEstudiante}")]
+        public async Task<IActionResult> Detalle( int idEstudiante)
+        {
+            var response = await _estudianteService.ConsultarDetalle(idEstudiante);
+            return Ok(response);
+        }
     }
 }

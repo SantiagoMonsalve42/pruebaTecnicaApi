@@ -3,6 +3,7 @@ using DATA.Implementations;
 using DATA.Interfaces;
 using DATA.ModelData;
 using DTO.Common;
+using DTO.Transport.Response;
 using NEGOCIO.Interfaces;
 
 namespace NEGOCIO.Implementations
@@ -12,13 +13,19 @@ namespace NEGOCIO.Implementations
         private readonly IEstudianteMateriaServiceDAO _estudianteMateria;
         private readonly IProfesorMateriaServiceDAO _profesorMateria;
         private readonly IMateriaServiceDAO _materiaServiceDAO;
+        private readonly IEstudianteServiceDAO _estudianteServiceDAO;
+        private readonly IProfesoreServiceDAO _profesorServiceDAO;
         public EstudianteService(IEstudianteMateriaServiceDAO estudianteMateria,
                                 IProfesorMateriaServiceDAO profesorMateria,
-                                IMateriaServiceDAO materiaServiceDAO)
+                                IMateriaServiceDAO materiaServiceDAO,
+                                IEstudianteServiceDAO estudianteServiceDAO,
+                                IProfesoreServiceDAO profesoreServiceDAO)
         {
             _estudianteMateria = estudianteMateria;
             _profesorMateria = profesorMateria;
             _materiaServiceDAO = materiaServiceDAO;
+            _estudianteServiceDAO = estudianteServiceDAO;
+            _profesorServiceDAO = profesoreServiceDAO;
         }
         public async Task<HttpResponseDto> AsignarMateria(int idEstudiante, int idMateria)
         {
@@ -81,6 +88,61 @@ namespace NEGOCIO.Implementations
                 Status = true,
                 Data = "Materia asignada correctamente"
             };
+        }
+
+        public async Task<HttpResponseDto> ConsultarDetalle(int idEstudiante)
+        {
+            Estudiante? estudianteExiste = await _estudianteServiceDAO.GetByIdAsync(idEstudiante);
+            if(estudianteExiste == null)
+            {
+                return new HttpResponseDto
+                {
+                    Status = false,
+                    Data = "Estudiante no existe."
+                };
+            }
+            List<Materia> listado = _materiaServiceDAO.GetAllAsync().Result.ToList();
+            List<ProfesorMateria> listadoprofesoresXMaterias = _profesorMateria.GetAllAsync().Result.ToList();
+            List<EstudianteMateria> estudianteMaterias = _estudianteMateria.GetAllAsync().Result.ToList();
+            List<Profesore> listadoprofesore = _profesorServiceDAO.GetAllAsync().Result.ToList();
+            var materiasAsignadas = from profeMaterias in listadoprofesoresXMaterias
+                                      join materia in listado
+                                      on profeMaterias.MateriaId equals materia.MateriaId
+                                      join estudiante in estudianteMaterias
+                                      on profeMaterias.MateriaId equals estudiante.MateriaId
+                                      join profe in listadoprofesore
+                                      on profeMaterias.ProfesorId equals profe.ProfesorId
+                                      where estudiante.EstudianteId == idEstudiante
+                                      select new
+                                      {
+                                          materia.MateriaId,
+                                          NombreMateria = materia.Nombre,
+                                          materia.Creditos,
+                                          NombreProfe = profe.Nombre
+                                      };
+            List<ObtenerMaterias> materias = new List<ObtenerMaterias>();
+            foreach (var item in materiasAsignadas)
+            {
+                materias.Add(new ObtenerMaterias()
+                {
+                    Creditos = item.Creditos,
+                    Id = item.MateriaId,
+                    Nombre = item.NombreMateria,
+                    NombreProfe = item.NombreProfe
+                });
+            }
+            return new HttpResponseDto
+            {
+                Status = true,
+                Data = new ObtenerDetalleEstudiante
+                {
+                    Apellido =estudianteExiste.Apellido,
+                    Nombre = estudianteExiste.Nombre,
+                    Email = estudianteExiste.Email,
+                    Materias = materias
+                }
+            };
+
         }
     }
 }

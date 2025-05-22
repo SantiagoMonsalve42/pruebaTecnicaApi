@@ -5,5 +5,6 @@ namespace NEGOCIO.Interfaces
     public interface IEstudianteService
     {
         Task<HttpResponseDto> AsignarMateria(int idEstudiante, int idMateria);
+        Task<HttpResponseDto> ConsultarDetalle(int idEstudiante);
     }
 }
