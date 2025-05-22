@@ -17,7 +17,7 @@ namespace pruebaTecnicaApi.Controllers
             _estudianteService = estudianteService;
         }
         [HttpPost("AsignarMateria/{idMateria}/idEstudiante/{idEstudiante}")]
-        public async Task<IActionResult> ObtenerDetalleMaterias(int idMateria,int idEstudiante)
+        public async Task<IActionResult> AsignarMateria(int idMateria,int idEstudiante)
         {
             var response = await _estudianteService.AsignarMateria(idEstudiante, idMateria);
             return Ok(response);
@@ -26,6 +26,12 @@ namespace pruebaTecnicaApi.Controllers
         public async Task<IActionResult> Detalle( int idEstudiante)
         {
             var response = await _estudianteService.ConsultarDetalle(idEstudiante);
+            return Ok(response);
+        }
+        [HttpDelete("DesasignarMateria/{idMateria}/idEstudiante/{idEstudiante}")]
+        public async Task<IActionResult> DesasignarMateria(int idMateria, int idEstudiante)
+        {
+            var response = await _estudianteService.DesasignarMateria(idEstudiante, idMateria);
             return Ok(response);
         }
     }

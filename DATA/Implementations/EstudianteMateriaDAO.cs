@@ -40,5 +40,20 @@ namespace DATA.Implementations
         {
             return await (from row in _repository.Entity where row.EstudianteId == id select row).ToListAsync();
         }
+
+        public async Task<bool> Delete(int idEstudiante, int idMateria)
+        {
+            EstudianteMateria? entry = await _repository.AsQueryable().Where(x=>x.EstudianteId==idEstudiante && x.MateriaId == idMateria).FirstOrDefaultAsync();
+            if(entry != null)
+            {
+                _repository.Detached(entry);
+                await _repository.Delete(entry);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

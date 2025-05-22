@@ -9,5 +9,6 @@ namespace DATA.Interfaces
         Task<EstudianteMateria> DeleteAsync(EstudianteMateria entity);
         Task<IEnumerable<EstudianteMateria>> GetAllAsync();
         Task<List<EstudianteMateria?>> GetByIdAsync(int id);
+        Task<bool> Delete(int idEstudiante, int idMateria);
     }
 }

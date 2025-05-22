@@ -144,5 +144,15 @@ namespace NEGOCIO.Implementations
             };
 
         }
+
+        public async Task<HttpResponseDto> DesasignarMateria(int idEstudiante, int idMateria)
+        {
+            bool status= await _estudianteMateria.Delete(idEstudiante, idMateria);
+            return new HttpResponseDto
+            {
+                Status = status,
+                Data = status ? "Materia desasignada correctamente" : "No se pudo desasignar la materia"
+            };
+        }
     }
 }

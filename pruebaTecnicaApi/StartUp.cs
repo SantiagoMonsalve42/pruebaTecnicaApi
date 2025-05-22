@@ -39,10 +39,11 @@ namespace pruebaTecnicaApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PruebaTecnica.Interrapidisimo.Api v1"));
             }
 
-            app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseCors(_MyCors);
+
+            app.UseHttpsRedirection();
             app.UseAuthorization();
             app.UseMiddleware<BasicAuthMiddleware>();
             app.UseEndpoints(endpoints =>

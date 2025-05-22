@@ -42,7 +42,7 @@ namespace NEGOCIO.Implementations
                 Data = new LoginResponse
                 {
                     IdEstudiante=existe.EstudianteId,
-                    Token = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{Util.GetSHA256(password)}"))
+                    Token = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"))
                 }                
             };
         }

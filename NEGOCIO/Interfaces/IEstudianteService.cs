@@ -6,5 +6,6 @@ namespace NEGOCIO.Interfaces
     {
         Task<HttpResponseDto> AsignarMateria(int idEstudiante, int idMateria);
         Task<HttpResponseDto> ConsultarDetalle(int idEstudiante);
+        Task<HttpResponseDto> DesasignarMateria(int idEstudiante, int idMateria);
     }
 }
